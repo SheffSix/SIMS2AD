@@ -109,5 +109,4 @@ Ensure that $OfficeTargetURL in the Config.ps1 file matches what you specify as 
  * Still need to figure out how to handle leavers/returners home folders.
 * Transfer Staff
 * Delete unused groups. But only when specified on command line.
-* E-mail reports (Make them look prettier maybe?)	
-#>
+* E-mail reports (Make them look prettier maybe?)
