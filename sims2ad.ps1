@@ -2,6 +2,9 @@
 .SYNOPSIS
 Create Active Directory user accounts for students and staff using reports generated from SIMS.
 
+.DESCRIPTION
+This script runs reports from SIMS then creates and configures user accounts and groups based on the results of those reports.
+
 .EXAMPLE
 .\sims2ad.ps1 -StudentUsers -DryRun False
 Synchronise student accounts
