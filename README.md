@@ -1,11 +1,17 @@
 # SIMS2AD
 
+##Description
+This script runs reports from SIMS then creates and configures user accounts and groups based on the results of those reports.
+
+##Disclaimer
+This was written for a very specific environment, so please don't use it. Neither myself nor my employer will take any resposibility for any damage caused by running this script in your enviromnent.
+
 ##Change Log
 
 ###v0.5
 ####Changes
 * New Azure AD Connect service which replaces DirSync uses different PowerShell modules.
-* Script updated to use new powershell modules MsOnline and AdSync instead oof DirSync if they are present.
+* Script updated to use new powershell modules MsOnline and AdSync instead of DirSync if they are present.
 
 ###v0.4.2
 ####Bug Fixes
@@ -17,20 +23,20 @@
 ###v0.4.1
 ####Bug Fixes
 * When removing a group membership, the e-mail report did not show the removed member if $Name was not present
-* Removing students from teaching groups, the call to function RemoveGroupMembership did not specify "$($Member.Name)"
+* Removing students from teaching groups, the call to function RemoveGroupMembership did not specify `"$($Member.Name)"`
 	
 ###v0.4
 ####CHANGES
 * Directly setting targetAddress and proxyAddresses to a user account proved unreliable. Now using built-in Exchange command Enable-RemoteMailbox.
-* Commands run inside If (!($Simulate)) {} statements are now followed by Else {}, writing the command to the console/log.
+* Commands run inside `If (!($Simulate)) {} statements are now followed by Else {}`, writing the command to the console/log.
 	
 ###v0.3
 ####Changes
-* New config item, $MSOLDomain. Specifies native domain name of the Microsoft Online organisation.
+* New config item, `$MSOLDomain`. Specifies native domain name of the Microsoft Online organisation.
 	
 ####Bug Fixes
-* On premises mailboxes were not able to e-mail new MSOL mailboxes. MSOL users are now created with the targetAddress property set. <mailprefix>@SouthHunsley.microsoftonline.com
-* MSOL Mailboxes were created with an incorrect e-mail address. Users are now created with an entry added into the proxyAddresses property. <mailprefix>@southhunsley.org.uk
+* On premises mailboxes were not able to e-mail new MSOL mailboxes. MSOL users are now created with the targetAddress property set. `<mailprefix>@SouthHunsley.microsoftonline.com`
+* MSOL Mailboxes were created with an incorrect e-mail address. Users are now created with an entry added into the proxyAddresses property. `<mailprefix>@southhunsley.org.uk`
 	
 ###v0.2
 ####Changes
@@ -46,11 +52,11 @@
 ###v0.1
 ####Changes
 * Config.ps1 split into two files, Config.ps1 and Include.ps1. Eliminating risk of user inadvertantley chaging something that shouldn't be.
-* $InDev line now commented out by default
+* `$InDev` line now commented out by default
 	
 ####Bug Fixes
-* Office365Sync funciton was checking for $ProcessMSOL incorrectly. I removed this check altoghether as it is only launched from within the ProcessOffice365 function, which already performs this check.
-* Reports were being e-mailed when no changes had been made. The script was looking for entries in $PrevDisabledUsers when deciding if to send an e-mail or not. $PrevDisabledUsers is a list of users who should be disabled, and already have been, not who shouldn't, which is where I was going wrong. I didn't implememnt that yet. D'oh!
+* Office365Sync funciton was checking for `$ProcessMSOL` incorrectly. I removed this check altoghether as it is only launched from within the ProcessOffice365 function, which already performs this check.
+* Reports were being e-mailed when no changes had been made. The script was looking for entries in `$PrevDisabledUsers` when deciding if to send an e-mail or not. `$PrevDisabledUsers` is a list of users who should be disabled, and already have been, not who shouldn't, which is where I was going wrong. I didn't implememnt that yet. D'oh!
 
 ##Permissions
 
@@ -96,3 +102,12 @@ Log on to the DirSync server as the user running the script and use the CredMan.
 It is important to use single quotes around the parameter values when using the CredMan.ps1 script.
 
 Ensure that $OfficeTargetURL in the Config.ps1 file matches what you specify as the -Target parameter.
+
+##To Do
+* Work out how we are handling Leavers who have returned.
+ * Leavers are now re-enabled and moved back to the correct OU.
+ * Still need to figure out how to handle leavers/returners home folders.
+* Transfer Staff
+* Delete unused groups. But only when specified on command line.
+* E-mail reports (Make them look prettier maybe?)	
+#>
