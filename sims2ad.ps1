@@ -1,4 +1,7 @@
-<#	
+<#
+.SYNOPSIS
+Create Active Directory user accounts for students and staff using reports generated from SIMS.
+
 .EXAMPLE
 .\sims2ad.ps1 -StudentUsers -DryRun False
 Synchronise student accounts
