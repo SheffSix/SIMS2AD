@@ -1,4 +1,5 @@
 # SIMS2AD
+*by James Beck*
 
 ##Description
 This script runs reports from SIMS then creates and configures user accounts and groups based on the results of those reports.
