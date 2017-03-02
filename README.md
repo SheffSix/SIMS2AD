@@ -3,7 +3,9 @@
 CHANGE LOG
 ----------
 v0.5
+
 CHANGES
+
 . New Azure AD Connect service which replaces DirSync uses different PowerShell modules.
 Script updated to use new powershell modules MsOnline and AdSync instead oof DirSync if they are present.
 
