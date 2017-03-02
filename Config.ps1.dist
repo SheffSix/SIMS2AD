@@ -1,0 +1,103 @@
+$SIMSDotNetFolder = "${ProgramFiles}\SIMS\SIMS .net"
+
+#Network
+$DBServer = "sh-mssql-01\sims2014"
+$DBName = "SIMS"
+$MandatoryProfile = "\\southhunsley.local\profiles$\student-man"
+[int]$FirstSixDigitAdNo = 8399
+$Year7Prefix = "16"
+$Year8Prefix = "15"
+$Year9Prefix = "14"
+$Year10Prefix = "13"
+$Year11Prefix = "12"
+$Year12Prefix = "6"
+$Year13Prefix = "5"
+$Year14Prefix = "4"
+$EmailSuffix = "@southhunsley.org.uk"
+$UserNameSuffix = "@southhunsley.org.uk"
+$UserCity = "Melton"
+$StudentHomeRoot = "\\southhunsley.local"
+$StudentHomeDrive = "H:"
+$StaffHomeRoot = "\\southhunsley.local\staff_home"
+$StaffHomeDrive = "H:"
+$NetBIOSDomain = "SOUTHHUNSLEY"
+
+#SIMS Reports
+$SIMSStaffUsersReport = "AD Staff"
+$SIMSStudentUsersReport = "SIMS2AD Students"
+$SIMSRegGroupReport = "AD Reg Groups"
+$SIMSStudentRegGroupReport = "AD Student to Reg Groups"
+$SIMSSubjectGroupReport = "SIMS2AD Class List"
+$SIMSTeachingGroupReport = "AD Student to Class List"
+$SIMSAssociateStaffReport = "SIMS2AD Associate Staff"
+$SIMSTeachingStaffReport = "SIMS2AD Teaching Staff"
+
+#LDAP OUs
+$LDAPRoot = "DC=southhunsley,DC=local"
+$LDAPStaffUsersOU = "OU=Staff,OU=current_users,${LDAPRoot}"
+$LDAPStaffUsersITSOU = "OU=ICT Support,OU=current_users,${LDAPRoot}"
+$LDAPStaffUsersITTOU = "OU=ITT Staff,OU=current_users,${LDAPRoot}"
+$LDAPStudentUsersOU = "OU=Students,OU=current_users,${LDAPRoot}"
+$LDAPRegGroupOU = "OU=Registration Groups,OU=Student,OU=groups,${LDAPRoot}"
+$LDAPStaffGroupOU = "OU=Staff,OU=groups,${LDAPRoot}"
+$LDAPSubjectGroupOU = "OU=Subject Groups,OU=Student,OU=groups,${LDAPRoot}"
+$LDAPTeachingGroupOU = "OU=Teaching Groups,OU=Student,OU=groups,${LDAPRoot}"
+
+#LDAPGroups
+$LDAPAssociateStaffGroup = "Associate Staff"
+$LDAPTeachingStaffGroup = "Teaching Staff"
+$LDAPAssociateStaffGroupDN = "CN=${LDAPAssociateStaffGroup},${LDAPStaffGroupOU}"
+$LDAPTeachingStaffGroupDN = "CN=${LDAPTeachingStaffGroup},${LDAPStaffGroupOU}"
+ 
+$LDAPRegGroupPrefix = "RG"
+$LDAPSubjectGroupPrefix = "SG"
+$LDAPTeachingGroupPrefix = "TG"
+
+#LDAP Filters
+$LDAPUserOUExclude = "{($_.DistinguishedName -notlike '*OU=External*') -or ($_.DistinguishedName -notlike '*OU=Guests*')}"
+$LDAPUserProperties = "DistinguishedName,CN,sAMAccountName,UserPrincipalName,GivenName,sn,DisplayName,Department,Company,ProfilePath,HomeDirectory,HomeDrive,l,PostOfficeBox,Description,Enabled"
+$LDAPUserPropertiesArray = $LDAPUserProperties.Split(",")
+
+#Report output files
+$LDAPStaffList = "${ReportsFolder}\LDAPStaffList.csv"
+$SIMSStaffList = "${ReportsFolder}\SIMSStaffList.csv"
+
+$LDAPStudentList = "${ReportsFolder}\LDAPStudentList.csv"
+$SIMSStudentList = "${ReportsFolder}\SIMSStudentList.csv"
+
+$LDAPRegGroupList = "${ReportsFolder}\LDAPRegGroupList.csv"
+$SIMSRegGroupList = "${ReportsFolder}\SIMSRegGroupList.csv"
+
+$LDAPStudentRegList = "${ReportsFolder}\LDAPStudentRegList.csv"
+$SIMSStudentRegList = "${ReportsFolder}\SIMSStudentRegList.csv"
+
+$LDAPTeachingSubList = "${ReportsFolder}\LDAPTeachingSubList.csv"
+$SIMSTeachingSubList = "${ReportsFolder}\SIMSTeachingSubList.csv"
+
+$LDAPStudentTeachList = "${ReportsFolder}\LDAPStudentTeachList.csv"
+$SIMSStudentTeachList = "${ReportsFolder}\SIMSStudentTeachList.csv"
+
+$LDAPAssociateStaffList = "${ReportsFolder}\LDAPAssociateStaffList.csv"
+$SIMSAssociateStaffList = "${ReportsFolder}\SIMSAssociateStaffList.csv"
+
+$LDAPTeachingStaffList = "${ReportsFolder}\LDAPTeachingStaffList.csv"
+$SIMSTeachingStaffList = "${ReportsFolder}\SIMSTeachingStaffList.csv"
+
+#Commands
+$CommandReporter = "${SIMSDotNetFolder}\CommandReporter.exe"
+
+#Office365
+$Office365MailboxPrefixes = 16 # Comma separeted list of prefixes to have office 365 mailboxes enabled
+$Office365StudentLicense = "southhunsley:STANDARDWOFFPACK_IW_STUDENT"
+$Office365StudentLicenseOptions = New-MsolLicenseOptions -AccountSkuId $Office365StudentLicense -DisabledPlans MCOSTANDARD
+$Office365StudentLicenseOptionsNoMBX = New-MsolLicenseOptions -AccountSkuId $Office365StudentLicense -DisabledPlans MCOSTANDARD,EXCHANGE_S_STANDARD
+$Office365StaffLicense = "southhunsley:STANDARDWOFFPACK_IW_FACULTY"
+$Office365StaffLicenseOptions = New-MsolLicenseOptions -AccountSkuId $Office365StaffLicense -DisabledPlans MCOSTANDARD
+$MSOLDomain = "SouthHunsley.mail.onmicrosoft.com"
+
+#E-mail
+$PSEmailServer = "mail.southhunsley.org.uk"
+$FromAddress = "SIMS User Synchronisation <noreply@southhunsley.org.uk>"
+$AdministratorContacts = "james.beck@southhunsley.org.uk", "paul.parker@southhunsley.org.uk"
+$PersonnelContacts = "james.beck@southhunsley.org.uk" #"bridgitte.holmes@southhunsley.org.uk"
+$AdmissionsContacts = "james.beck@southhunsley.org.uk" #"jenny.drant@southhunsley.org.uk", "karen.moran@southhunsley.org.uk"
