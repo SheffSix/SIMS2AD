@@ -61,9 +61,6 @@ v0.1
 		$PrevDisabledUsers is a list of users who should be disabled, and already have been, not who shouldn't, which is where I was going wrong. I didn't implememnt
 		that yet. D'oh!
 
-.DESCRIPTION
-This script runs reports from SIMS then creates and configures user accounts and groups based on the results of those reports.
-
 Permissions
 ###########
 
